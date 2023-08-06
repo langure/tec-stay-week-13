@@ -22,9 +22,46 @@ While BERT can be highly effective for emotion detection, it's important to keep
 
 Additionally, while BERT is capable of capturing complex language features, it doesn't entirely comprehend the text the way humans do. Complex linguistic phenomena like sarcasm or irony might still pose challenges for BERT.
 
+# Readings
+
 [A Text Abstraction Summary Model Based on BERT Word Embedding and Reinforcement Learning](https://www.mdpi.com/2076-3417/9/21/4701)
 
 [Does BERT Make Any Sense? Interpretable Word Sense Disambiguation with Contextualized Embeddings](https://arxiv.org/pdf/1909.10430.pdf)
 
 
-# Code examples
+# Code example
+
+
+
+Step 1: Importing Libraries
+
+We start by importing the necessary libraries for our emotion detection task. These libraries include torch for deep learning, torch.nn for neural network components, and BertTokenizer and BertModel from the transformers library. The latter provides access to pre-trained BERT models and tokenization utilities.
+
+Step 2: Loading Pre-trained BERT Model and Tokenizer
+
+In this step, we load the pre-trained BERT model and tokenizer using the bert-base-uncased variant. The model is a powerful language representation model that can be fine-tuned for various NLP tasks, including emotion detection. The tokenizer helps convert raw text into BERT-compatible input features.
+
+Step 3: Defining the Emotion Classifier Model
+
+Next, we define the emotion classifier model, which will use BERT embeddings for emotion classification. We create a simple feedforward neural network (EmotionClassifier) that includes the BERT model and a linear layer to map the BERT embeddings to emotion class probabilities. For this example, we assume four emotion classes: happy, sad, angry, and neutral.
+
+Step 4: Converting Text to BERT Input Features
+
+We define a function named convert_text_to_features that takes text as input and returns BERT-compatible input features (input_ids and attention_mask). The function uses the BERT tokenizer to convert the text into tokens, then pads or truncates the tokens to ensure consistent input lengths. The function returns the input IDs (indices of the tokens in BERT's vocabulary) and the attention mask, which tells BERT which tokens to attend to and which ones to ignore during processing.
+
+Step 5: Creating an Instance of the Emotion Classifier
+
+We instantiate the emotion classifier model using the EmotionClassifier class we defined earlier. The model will use BERT's hidden size (768) and the specified number of emotion classes (4) for classification.
+
+Step 6: Example Sentences for Testing
+
+In this step, we provide four example sentences to test the emotion detection model. These sentences represent different emotions: happiness, sadness, anger, and a neutral statement.
+
+Step 7: Emotion Detection and Prediction
+
+For each example sentence, we call the convert_text_to_features function to obtain the BERT input features. We then pass these input features through the emotion classifier model. The model outputs probabilities for each emotion class using the softmax function. The highest probability corresponds to the predicted emotion for that sentence.
+
+Step 8: Displaying Results
+
+Finally, we print the original sentence and the predicted emotion for each example. The model's ability to accurately detect emotions in text demonstrates the power of pre-trained BERT models for NLP tasks.
+
